@@ -6,6 +6,8 @@ using System;
 
 public class ArduinoSerial : MonoBehaviour
 {
+
+    public GameObject thecube;
     SerialPort serialPort = new SerialPort("COM4", 115200); // COM port and baud rate
     string receivedData = "";
 
@@ -94,7 +96,15 @@ public class ArduinoSerial : MonoBehaviour
 
             string output = "Magnitude= " + Magnitude + " Angle= " + Angle + " SliderL= " + SliderL + " SliderR= " + SliderR;
             Debug.Log(output);
-          
+
+
+
+            thecube.transform.eulerAngles = new Vector3(
+            thecube.transform.eulerAngles.x,
+            Angle*-1.0f,
+            thecube.transform.eulerAngles.z
+        );
+
         }
         catch (System.TimeoutException)
         {
